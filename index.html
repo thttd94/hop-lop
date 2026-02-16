@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Họp Lớp Xã đoàn A4</title>
+<title>Họp Lớp Xã Đoàn A4</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- FONT HỖ TRỢ TIẾNG VIỆT -->
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    font-family:'Poppins',sans-serif;
+    font-family:'Be Vietnam Pro',sans-serif;
     min-height:100vh;
     background:radial-gradient(circle at top,#1a1a2e,#0f0f1a 60%);
     display:flex;
@@ -37,17 +38,17 @@ body{
     to{transform:translateY(-10vh) scale(1);}
 }
 
-/* Card kính */
+/* Card */
 .card{
     position:relative;
-    max-width:680px;
+    max-width:700px;
     width:100%;
-    padding:40px;
+    padding:45px;
     border-radius:25px;
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.06);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,215,0,0.4);
-    box-shadow:0 0 40px rgba(255,215,0,0.2);
+    box-shadow:0 0 40px rgba(255,215,0,0.25);
     text-align:center;
     animation:fadeIn 1s ease;
 }
@@ -57,13 +58,11 @@ body{
     to{opacity:1;transform:translateY(0);}
 }
 
-/* Tiêu đề vàng kim */
+/* Tiêu đề */
 h1{
-    font-family:'Cinzel',serif;
     font-size:32px;
-    background:linear-gradient(45deg,#ffd700,#fff3b0,#ffd700);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    font-weight:800;
+    color:#ffd700;
     margin-bottom:10px;
 }
 
@@ -72,35 +71,64 @@ h1{
     margin-bottom:25px;
 }
 
-.highlight{
-    font-size:18px;
-    margin-bottom:20px;
+/* Tên vàng kim */
+.gold-name{
+    font-weight:800;
+    font-size:24px;
+    background:linear-gradient(90deg,#ffd700,#fff8dc,#ffd700);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    position:relative;
+    display:inline-block;
+    animation:shine 3s infinite linear;
+}
+
+@keyframes shine{
+    0%{background-position:-200px;}
+    100%{background-position:200px;}
+}
+
+.gold-name::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-75%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.9),transparent);
+    transform:skewX(-25deg);
+    animation:lightSweep 3s infinite;
+}
+
+@keyframes lightSweep{
+    0%{left:-75%;}
+    100%{left:125%;}
 }
 
 .info{
     margin:25px 0;
     line-height:1.8;
-    font-size:16px;
+    font-size:17px;
 }
 
 .btn{
     display:inline-block;
     margin:10px;
-    padding:14px 22px;
+    padding:15px 24px;
     border-radius:30px;
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    color:black;
 }
 
 .btn-map{
     background:linear-gradient(45deg,#f7971e,#ffd200);
-    color:black;
 }
 
 .btn-contact{
     background:linear-gradient(45deg,#00c9ff,#92fe9d);
-    color:black;
 }
 
 .btn:hover{
@@ -127,8 +155,8 @@ h1{
     <h1>🎉 HỌP LỚP XÃ ĐOÀN A4 🎉</h1>
     <div class="subtitle">Niên khóa 2009 – 2012</div>
 
-    <div class="highlight">
-        Chào <strong id="tenNguoi">Bạn</strong> ✨
+    <div style="font-size:20px;margin-bottom:20px;">
+        Chào <span class="gold-name" id="tenNguoi">Bạn</span> ✨
     </div>
 
     <div>
@@ -162,14 +190,14 @@ h1{
 </div>
 
 <script>
-/* cá nhân hóa tên */
+/* Cá nhân hóa tên */
 const params = new URLSearchParams(window.location.search);
-const ten = params.get("ten");
+let ten = params.get("ten");
 if (ten) {
   document.getElementById("tenNguoi").textContent = ten;
 }
 
-/* tạo hạt lấp lánh */
+/* Tạo hạt lấp lánh */
 for(let i=0;i<40;i++){
     let s=document.createElement("div");
     s.className="sparkle";
